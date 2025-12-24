@@ -188,6 +188,12 @@ section{
   gap:3rem;
 }
 
+/* BOOKING */
+form label{font-weight:500;margin-bottom:.3rem;display:block}
+form input, form select, form button{margin-bottom:1rem}
+form button{transition:0.3s}
+form button:hover{opacity:0.85}
+
 /* FOOTER */
 footer{
   background:#111;
@@ -212,6 +218,7 @@ footer{
     <a href="#menu">Karte</a>
     <a href="#reviews">Stimmen</a>
     <a href="#info">Kontakt</a>
+    <a href="#booking">Reservierung</a>
   </div>
 </nav>
 
@@ -311,9 +318,73 @@ footer{
   </div>
 </section>
 
+<section id="booking" class="menu-section">
+  <h2 class="title">Tischreservierung</h2>
+  <div class="card">
+    <form id="bookingForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="Name" required>
+
+      <label for="address">Adresse:</label>
+      <input type="text" id="address" name="Adresse" required>
+
+      <label for="email">E-Mail:</label>
+      <input type="email" id="email" name="Email" required>
+
+      <label for="phone">Telefonnummer:</label>
+      <input type="tel" id="phone" name="Telefon" required>
+
+      <label for="date">Datum:</label>
+      <input type="date" id="date" name="Datum" required>
+
+      <label for="time">Uhrzeit:</label>
+      <input type="time" id="time" name="Uhrzeit" required>
+      <small>Ein Tisch ist 1,5 Stunden verfügbar</small>
+
+      <label for="guests">Anzahl Gäste (max. 4 pro Tisch):</label>
+      <input type="number" id="guests" name="Gäste" min="1" max="4" required>
+
+      <button type="submit">Tisch reservieren</button>
+    </form>
+    <p style="margin-top:1rem;color:var(--muted);font-size:.9rem;">
+      Hinweis: Es gibt 7 Tische mit jeweils 4 Sitzplätzen.
+    </p>
+  </div>
+</section>
+
 <footer>
   © 2025 Café Maxi · Wien
 </footer>
+
+<script>
+// Einfaches Reservierungs-Handling (ohne Backend)
+const bookingForm = document.getElementById('bookingForm');
+const MAX_TABLES = 7;
+const SEATS_PER_TABLE = 4;
+
+bookingForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const guests = parseInt(document.getElementById('guests').value);
+  if(guests > SEATS_PER_TABLE){
+    alert('Maximal 4 Gäste pro Tisch erlaubt.');
+    return;
+  }
+
+  // Daten sammeln
+  const name = document.getElementById('name').value;
+  const address = document.getElementById('address').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
+
+  const mailtoLink = `mailto:moritz.matscheko@yahoo.com?subject=Tischreservierung&body=Name:%20${encodeURIComponent(name)}%0AAdresse:%20${encodeURIComponent(address)}%0AEmail:%20${encodeURIComponent(email)}%0ATelefon:%20${encodeURIComponent(phone)}%0ADatum:%20${encodeURIComponent(date)}%0AUhrzeit:%20${encodeURIComponent(time)}%0AGäste:%20${encodeURIComponent(guests)}`;
+
+  window.location.href = mailtoLink;
+  alert('Ihre Reservierungsanfrage wurde geöffnet. Bitte senden Sie die E-Mail ab.');
+});
+</script>
 
 </body>
 </html>
