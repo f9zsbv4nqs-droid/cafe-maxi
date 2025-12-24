@@ -5,320 +5,314 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Café Maxi – Wien</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg:#faf9f7;
-  --dark:#1f2933;
-  --accent:#8b5e34;
-  --soft:#e7dfd6;
-  --star:#fbbf24;
+:root{
+  --bg:#f5f5f7;
+  --card:#ffffff;
+  --text:#1d1d1f;
+  --muted:#6e6e73;
+  --accent:#7a4a2e;
+  --line:#e5e5ea;
+  --star:#ffb703;
 }
 
-* {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-body {
+body{
   font-family:Inter,system-ui,sans-serif;
   background:var(--bg);
-  color:var(--dark);
+  color:var(--text);
   line-height:1.7;
 }
 
-/* HEADER */
-header {
-  padding:1.5rem 3rem;
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(12px);
+  background:rgba(245,245,247,0.8);
+  border-bottom:1px solid var(--line);
+  padding:1rem 3rem;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  z-index:10;
 }
 
-.logo {
-  font-family:"Playfair Display",serif;
-  font-size:1.8rem;
-  font-weight:700;
-}
-
-nav a {
+nav a{
   margin-left:2rem;
   text-decoration:none;
-  color:var(--dark);
+  color:var(--muted);
   font-weight:500;
 }
 
-nav a:hover {
-  color:var(--accent);
+nav a:hover{color:var(--text)}
+
+.logo{
+  font-family:"Playfair Display",serif;
+  font-weight:700;
 }
 
 /* HERO */
-.hero {
-  min-height:70vh;
+.hero{
+  min-height:90vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  background:
-    linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)),
-    url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover;
-  color:white;
   padding:2rem;
 }
 
-.hero h1 {
+.hero h1{
   font-family:"Playfair Display",serif;
-  font-size:3.5rem;
+  font-size:3.8rem;
   margin-bottom:1rem;
 }
 
-.hero p {
-  max-width:600px;
+.hero p{
+  max-width:620px;
   margin:auto;
-  font-size:1.1rem;
+  color:var(--muted);
+  font-size:1.15rem;
 }
 
-.hero span {
+.hero span{
   display:block;
-  margin-top:2rem;
+  margin-top:2.5rem;
+  color:var(--accent);
   letter-spacing:2px;
-  font-size:0.9rem;
+  font-size:.9rem;
 }
 
 /* SECTIONS */
-section {
-  max-width:1100px;
+section{
+  max-width:1200px;
   margin:auto;
-  padding:5rem 2rem;
+  padding:6rem 2rem;
 }
 
-.section-title {
+.title{
   font-family:"Playfair Display",serif;
-  font-size:2.3rem;
+  font-size:2.6rem;
   margin-bottom:2rem;
 }
 
-/* ABOUT */
-.about {
+/* CARDS */
+.card{
+  background:var(--card);
+  border-radius:24px;
+  padding:3rem;
+  box-shadow:0 20px 50px rgba(0,0,0,.06);
+}
+
+/* PHILOSOPHY */
+.philosophy{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:3rem;
-}
-
-.about div {
-  background:white;
-  padding:2.5rem;
-  border-radius:16px;
 }
 
 /* MENU */
-.menu {
-  background:var(--soft);
+.menu-section{
+  background:linear-gradient(#f5f5f7,#eee);
 }
 
-.menu-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:2rem;
-}
-
-.menu-card {
-  background:white;
-  padding:2rem;
-  border-radius:16px;
-}
-
-.menu-card h3 {
-  font-family:"Playfair Display",serif;
-  margin-bottom:1rem;
-}
-
-.menu-item {
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:0.7rem;
-}
-
-.price {
-  font-weight:600;
-}
-
-/* REVIEWS */
-.reviews {
-  background:white;
-}
-
-.reviews-grid {
+.menu-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:2rem;
+  gap:2.5rem;
 }
 
-.review-card {
-  background:var(--bg);
-  padding:2.5rem;
-  border-radius:20px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.08);
-}
-
-.stars {
-  color:var(--star);
-  font-size:1.4rem;
-  margin-bottom:1rem;
-}
-
-.review-text {
+.menu-card h3{
   font-family:"Playfair Display",serif;
-  font-size:1.15rem;
   margin-bottom:1.5rem;
 }
 
-.review-author {
-  font-weight:600;
+.menu-item{
+  display:flex;
+  justify-content:space-between;
+  padding:.6rem 0;
+  border-bottom:1px dashed var(--line);
+}
+
+.menu-item:last-child{border:none}
+
+.price{font-weight:500}
+
+/* REVIEWS */
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+  gap:2.5rem;
+}
+
+.review{
+  background:var(--card);
+  padding:3rem;
+  border-radius:28px;
+  position:relative;
+}
+
+.review::before{
+  content:"“";
+  font-family:"Playfair Display",serif;
+  font-size:6rem;
+  position:absolute;
+  top:-20px;
+  left:20px;
+  color:#ddd;
+}
+
+.stars{
+  color:var(--star);
+  font-size:1.2rem;
+  margin-bottom:1rem;
+}
+
+.review p{
+  font-family:"Playfair Display",serif;
+  font-size:1.15rem;
+}
+
+.author{
+  margin-top:1.5rem;
+  color:var(--muted);
+  font-weight:500;
 }
 
 /* INFO */
-.info {
+.info{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:3rem;
 }
 
-.info-box {
-  background:white;
-  padding:2.5rem;
-  border-radius:16px;
-}
-
 /* FOOTER */
-footer {
-  background:#111827;
-  color:#d1d5db;
+footer{
+  background:#111;
+  color:#aaa;
   text-align:center;
-  padding:2rem;
+  padding:3rem;
 }
 
-@media(max-width:800px){
-  .about,.info {
-    grid-template-columns:1fr;
-  }
-
-  .hero h1 {
-    font-size:2.6rem;
-  }
+@media(max-width:900px){
+  .philosophy,.info{grid-template-columns:1fr}
+  .hero h1{font-size:2.7rem}
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<nav>
   <div class="logo">Café Maxi</div>
-  <nav>
-    <a href="#about">Über uns</a>
+  <div>
+    <a href="#philosophy">Philosophie</a>
     <a href="#menu">Karte</a>
-    <a href="#reviews">Rezensionen</a>
-    <a href="#info">Info</a>
-  </nav>
-</header>
+    <a href="#reviews">Stimmen</a>
+    <a href="#info">Kontakt</a>
+  </div>
+</nav>
 
 <section class="hero">
   <div>
     <h1>Café Maxi</h1>
-    <p>Moderne Wiener Kaffeehauskultur im Herzen der Donaustadt – urig, gemütlich und ehrlich.</p>
+    <p>
+      Ein kleines, ehrliches Wiener Beisl in der Donaustadt.
+      Kaffee, Spritzer, Gespräche – so wie’s sein soll.
+    </p>
     <span>Schüttaustraße 4/10 · 1220 Wien</span>
   </div>
 </section>
 
-<section id="about">
-  <h2 class="section-title">Über Café Maxi</h2>
-  <div class="about">
-    <div>
+<section id="philosophy">
+  <h2 class="title">Unsere Philosophie</h2>
+  <div class="philosophy">
+    <div class="card">
       <p>
-        Ein kleines, alt-eingesessenes Wiener Beisl mit Herz.
-        Hier treffen sich Stammgäste, Nachbarn und alle,
-        die gutes Trinken und ehrliche Atmosphäre schätzen.
+        Café Maxi ist kein Konzept – es ist gewachsen.
+        Ein Ort für Stammgäste, Nachbarn und alle,
+        die ein echtes Wiener Kaffeehaus schätzen.
       </p>
     </div>
-    <div>
+    <div class="card">
       <p>
-        Freundliche Bedienung, guter Spritzer,
-        faire Preise – so wie man’s kennt und liebt.
+        Freundliche Gastgeber, ehrliche Getränke,
+        faire Preise und eine Atmosphäre,
+        die man nicht designen kann – nur leben.
       </p>
     </div>
   </div>
 </section>
 
-<section id="menu" class="menu">
-  <h2 class="section-title">Speise- & Getränkekarte</h2>
+<section id="menu" class="menu-section">
+  <h2 class="title">Speise- & Getränkekarte</h2>
 
   <div class="menu-grid">
-    <div class="menu-card">
-      <h3>☕ Kaffee & Getränke</h3>
-      <div class="menu-item"><span>Espresso</span><span class="price">€2,80</span></div>
-      <div class="menu-item"><span>Verlängerter</span><span class="price">€3,20</span></div>
-      <div class="menu-item"><span>Cappuccino</span><span class="price">€3,80</span></div>
-      <div class="menu-item"><span>G’spritzter (weiß/rot)</span><span class="price">€2,90</span></div>
-      <div class="menu-item"><span>Wieselburger Bier</span><span class="price">€2,40</span></div>
+    <div class="card menu-card">
+      <h3>Kaffee & Getränke</h3>
+      <div class="menu-item"><span>Espresso</span><span class="price">€ 2,80</span></div>
+      <div class="menu-item"><span>Verlängerter</span><span class="price">€ 3,20</span></div>
+      <div class="menu-item"><span>Cappuccino</span><span class="price">€ 3,80</span></div>
+      <div class="menu-item"><span>G’spritzter (weiß/rot)</span><span class="price">€ 2,90</span></div>
+      <div class="menu-item"><span>Wieselburger Bier</span><span class="price">€ 2,40</span></div>
     </div>
 
-    <div class="menu-card">
-      <h3>🥐 Speisen</h3>
-      <div class="menu-item"><span>Buttercroissant</span><span class="price">€3,10</span></div>
-      <div class="menu-item"><span>Hausgemachter Kuchen</span><span class="price">€4,80</span></div>
-      <div class="menu-item"><span>Bananenbrot</span><span class="price">€4,20</span></div>
-      <div class="menu-item"><span>Frühstück Maxi</span><span class="price">€12,50</span></div>
+    <div class="card menu-card">
+      <h3>Feines zum Essen</h3>
+      <div class="menu-item"><span>Buttercroissant</span><span class="price">€ 3,10</span></div>
+      <div class="menu-item"><span>Hausgemachter Kuchen</span><span class="price">€ 4,80</span></div>
+      <div class="menu-item"><span>Bananenbrot</span><span class="price">€ 4,20</span></div>
+      <div class="menu-item"><span>Frühstück Maxi</span><span class="price">€ 12,50</span></div>
     </div>
   </div>
 </section>
 
-<section id="reviews" class="reviews">
-  <h2 class="section-title">Was unsere Gäste sagen</h2>
+<section id="reviews">
+  <h2 class="title">Was unsere Gäste sagen</h2>
 
   <div class="reviews-grid">
-    <div class="review-card">
+    <div class="review">
       <div class="stars">★★★★★</div>
-      <p class="review-text">
-        „Weils einfach a uriges, alt-eingessenes kleines Kaffee is.
-        Super nette Chefleit, lustige Gäst, an guaten Wein
-        und die Preise passen auch… jo so is hoit.“
+      <p>
+        Weils einfach a uriges, alt-eingessenes kleines Kaffee is.
+        Super nette Chefleit, lustige Gäst,
+        guater Wein – und die Preise passen.
       </p>
-      <p class="review-author">– Michael Wimmer · Zopf Michl</p>
+      <div class="author">Michael Wimmer · Zopf Michl</div>
     </div>
 
-    <div class="review-card">
+    <div class="review">
       <div class="stars">★★★★★</div>
-      <p class="review-text">
-        „Nettes, gemütliches Wiener Beisl.
-        1× Spritzer, 1× Wieselburger um 5,30 €.
-        Wirklich sehr nette Kellnerin,
-        günstige Preise und a richtig guter Spritzer.“
+      <p>
+        Nettes, gemütliches Wiener Beisl.
+        1× Spritzer, 1× Wieselburger um 5,30 € –
+        sehr nette Kellnerin und a richtig guter Spritzer.
       </p>
-      <p class="review-author">– Emci Spengla</p>
+      <div class="author">Emci Spengla</div>
     </div>
   </div>
 </section>
 
 <section id="info">
-  <h2 class="section-title">Öffnungszeiten & Kontakt</h2>
+  <h2 class="title">Besuch & Öffnungszeiten</h2>
   <div class="info">
-    <div class="info-box">
-      <h4>🕒 Öffnungszeiten</h4>
-      <p>Montag – Donnerstag: 08:00 – 22:00</p>
-      <p>Samstag: 08:00 – 15:00</p>
-      <p>Sonntag: geschlossen</p>
+    <div class="card">
+      <p><strong>Montag – Donnerstag</strong><br>08:00 – 22:00</p>
+      <p><strong>Samstag</strong><br>08:00 – 15:00</p>
+      <p><strong>Sonntag</strong><br>geschlossen</p>
     </div>
-    <div class="info-box">
-      <h4>📍 Adresse</h4>
-      <p>Schüttaustraße 4/10<br>1220 Wien</p>
+    <div class="card">
+      <p><strong>Adresse</strong><br>
+      Schüttaustraße 4/10<br>
+      1220 Wien</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 Café Maxi · Wien</p>
+  © 2025 Café Maxi · Wien
 </footer>
 
 </body>
