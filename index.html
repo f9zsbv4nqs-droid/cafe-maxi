@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Maxi – Wien</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#faf9f7;
+  --dark:#1f2933;
+  --accent:#8b5e34;
+  --soft:#e7dfd6;
+  --star:#fbbf24;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family:Inter,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  line-height:1.7;
+}
+
+/* HEADER */
+header {
+  padding:1.5rem 3rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo {
+  font-family:"Playfair Display",serif;
+  font-size:1.8rem;
+  font-weight:700;
+}
+
+nav a {
+  margin-left:2rem;
+  text-decoration:none;
+  color:var(--dark);
+  font-weight:500;
+}
+
+nav a:hover {
+  color:var(--accent);
+}
+
+/* HERO */
+.hero {
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)),
+    url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover;
+  color:white;
+  padding:2rem;
+}
+
+.hero h1 {
+  font-family:"Playfair Display",serif;
+  font-size:3.5rem;
+  margin-bottom:1rem;
+}
+
+.hero p {
+  max-width:600px;
+  margin:auto;
+  font-size:1.1rem;
+}
+
+.hero span {
+  display:block;
+  margin-top:2rem;
+  letter-spacing:2px;
+  font-size:0.9rem;
+}
+
+/* SECTIONS */
+section {
+  max-width:1100px;
+  margin:auto;
+  padding:5rem 2rem;
+}
+
+.section-title {
+  font-family:"Playfair Display",serif;
+  font-size:2.3rem;
+  margin-bottom:2rem;
+}
+
+/* ABOUT */
+.about {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+}
+
+.about div {
+  background:white;
+  padding:2.5rem;
+  border-radius:16px;
+}
+
+/* MENU */
+.menu {
+  background:var(--soft);
+}
+
+.menu-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+}
+
+.menu-card {
+  background:white;
+  padding:2rem;
+  border-radius:16px;
+}
+
+.menu-card h3 {
+  font-family:"Playfair Display",serif;
+  margin-bottom:1rem;
+}
+
+.menu-item {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:0.7rem;
+}
+
+.price {
+  font-weight:600;
+}
+
+/* REVIEWS */
+.reviews {
+  background:white;
+}
+
+.reviews-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:2rem;
+}
+
+.review-card {
+  background:var(--bg);
+  padding:2.5rem;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+}
+
+.stars {
+  color:var(--star);
+  font-size:1.4rem;
+  margin-bottom:1rem;
+}
+
+.review-text {
+  font-family:"Playfair Display",serif;
+  font-size:1.15rem;
+  margin-bottom:1.5rem;
+}
+
+.review-author {
+  font-weight:600;
+}
+
+/* INFO */
+.info {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+}
+
+.info-box {
+  background:white;
+  padding:2.5rem;
+  border-radius:16px;
+}
+
+/* FOOTER */
+footer {
+  background:#111827;
+  color:#d1d5db;
+  text-align:center;
+  padding:2rem;
+}
+
+@media(max-width:800px){
+  .about,.info {
+    grid-template-columns:1fr;
+  }
+
+  .hero h1 {
+    font-size:2.6rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Café Maxi</div>
+  <nav>
+    <a href="#about">Über uns</a>
+    <a href="#menu">Karte</a>
+    <a href="#reviews">Rezensionen</a>
+    <a href="#info">Info</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Café Maxi</h1>
+    <p>Moderne Wiener Kaffeehauskultur im Herzen der Donaustadt – urig, gemütlich und ehrlich.</p>
+    <span>Schüttaustraße 4/10 · 1220 Wien</span>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">Über Café Maxi</h2>
+  <div class="about">
+    <div>
+      <p>
+        Ein kleines, alt-eingesessenes Wiener Beisl mit Herz.
+        Hier treffen sich Stammgäste, Nachbarn und alle,
+        die gutes Trinken und ehrliche Atmosphäre schätzen.
+      </p>
+    </div>
+    <div>
+      <p>
+        Freundliche Bedienung, guter Spritzer,
+        faire Preise – so wie man’s kennt und liebt.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="menu">
+  <h2 class="section-title">Speise- & Getränkekarte</h2>
+
+  <div class="menu-grid">
+    <div class="menu-card">
+      <h3>☕ Kaffee & Getränke</h3>
+      <div class="menu-item"><span>Espresso</span><span class="price">€2,80</span></div>
+      <div class="menu-item"><span>Verlängerter</span><span class="price">€3,20</span></div>
+      <div class="menu-item"><span>Cappuccino</span><span class="price">€3,80</span></div>
+      <div class="menu-item"><span>G’spritzter (weiß/rot)</span><span class="price">€2,90</span></div>
+      <div class="menu-item"><span>Wieselburger Bier</span><span class="price">€2,40</span></div>
+    </div>
+
+    <div class="menu-card">
+      <h3>🥐 Speisen</h3>
+      <div class="menu-item"><span>Buttercroissant</span><span class="price">€3,10</span></div>
+      <div class="menu-item"><span>Hausgemachter Kuchen</span><span class="price">€4,80</span></div>
+      <div class="menu-item"><span>Bananenbrot</span><span class="price">€4,20</span></div>
+      <div class="menu-item"><span>Frühstück Maxi</span><span class="price">€12,50</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews">
+  <h2 class="section-title">Was unsere Gäste sagen</h2>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">
+        „Weils einfach a uriges, alt-eingessenes kleines Kaffee is.
+        Super nette Chefleit, lustige Gäst, an guaten Wein
+        und die Preise passen auch… jo so is hoit.“
+      </p>
+      <p class="review-author">– Michael Wimmer · Zopf Michl</p>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">
+        „Nettes, gemütliches Wiener Beisl.
+        1× Spritzer, 1× Wieselburger um 5,30 €.
+        Wirklich sehr nette Kellnerin,
+        günstige Preise und a richtig guter Spritzer.“
+      </p>
+      <p class="review-author">– Emci Spengla</p>
+    </div>
+  </div>
+</section>
+
+<section id="info">
+  <h2 class="section-title">Öffnungszeiten & Kontakt</h2>
+  <div class="info">
+    <div class="info-box">
+      <h4>🕒 Öffnungszeiten</h4>
+      <p>Montag – Donnerstag: 08:00 – 22:00</p>
+      <p>Samstag: 08:00 – 15:00</p>
+      <p>Sonntag: geschlossen</p>
+    </div>
+    <div class="info-box">
+      <h4>📍 Adresse</h4>
+      <p>Schüttaustraße 4/10<br>1220 Wien</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Café Maxi · Wien</p>
+</footer>
+
+</body>
+</html>
