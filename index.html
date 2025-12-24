@@ -34,14 +34,14 @@ nav{
   backdrop-filter:blur(12px);
   background:rgba(245,245,247,0.8);
   border-bottom:1px solid var(--line);
-  padding:1rem 3rem;
+  padding:1rem 2rem;
   display:flex;
   justify-content:space-between;
   z-index:10;
 }
 
 nav a{
-  margin-left:2rem;
+  margin-left:1.5rem;
   text-decoration:none;
   color:var(--muted);
   font-weight:500;
@@ -55,34 +55,54 @@ nav a:hover{color:var(--text)}
 }
 
 /* HERO */
-.hero{
-  min-height:90vh;
+.hero {
+  position:relative;
+  width:100%;
+  height:65vh;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:2rem;
+  background:#000;
+}
+
+.hero img {
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+}
+
+.hero img.active {opacity:1;}
+
+.hero .hero-text {
+  position:relative;
+  z-index:2;
+  color:white;
+  text-shadow:0px 0px 12px rgba(0,0,0,0.7);
 }
 
 .hero h1{
   font-family:"Playfair Display",serif;
-  font-size:3.8rem;
-  margin-bottom:1rem;
+  font-size:3rem;
+  margin-bottom:0.75rem;
 }
 
 .hero p{
   max-width:620px;
   margin:auto;
-  color:var(--muted);
   font-size:1.15rem;
+  margin-bottom:0.5rem;
 }
 
 .hero span{
   display:block;
-  margin-top:2.5rem;
   color:var(--accent);
   letter-spacing:2px;
-  font-size:.9rem;
+  font-size:1rem;
 }
 
 /* SECTIONS */
@@ -104,13 +124,6 @@ section{
   border-radius:24px;
   padding:3rem;
   box-shadow:0 20px 50px rgba(0,0,0,.06);
-}
-
-/* PHILOSOPHY */
-.philosophy{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:3rem;
 }
 
 /* MENU */
@@ -135,9 +148,7 @@ section{
   padding:.6rem 0;
   border-bottom:1px dashed var(--line);
 }
-
 .menu-item:last-child{border:none}
-
 .price{font-weight:500}
 
 /* REVIEWS */
@@ -146,14 +157,12 @@ section{
   grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
   gap:2.5rem;
 }
-
 .review{
   background:var(--card);
   padding:3rem;
   border-radius:28px;
   position:relative;
 }
-
 .review::before{
   content:"“";
   font-family:"Playfair Display",serif;
@@ -163,36 +172,20 @@ section{
   left:20px;
   color:#ddd;
 }
-
 .stars{
   color:var(--star);
   font-size:1.2rem;
   margin-bottom:1rem;
 }
-
 .review p{
   font-family:"Playfair Display",serif;
   font-size:1.15rem;
 }
-
 .author{
   margin-top:1.5rem;
   color:var(--muted);
   font-weight:500;
 }
-
-/* INFO */
-.info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:3rem;
-}
-
-/* BOOKING */
-form label{font-weight:500;margin-bottom:.3rem;display:block}
-form input, form select, form button{margin-bottom:1rem}
-form button{transition:0.3s}
-form button:hover{opacity:0.85}
 
 /* FOOTER */
 footer{
@@ -200,11 +193,6 @@ footer{
   color:#aaa;
   text-align:center;
   padding:3rem;
-}
-
-@media(max-width:900px){
-  .philosophy,.info{grid-template-columns:1fr}
-  .hero h1{font-size:2.7rem}
 }
 </style>
 </head>
@@ -222,168 +210,75 @@ footer{
   </div>
 </nav>
 
+<!-- HERO mit CC0 Bildern -->
 <section class="hero">
-  <div>
+  <img src="https://cdn.pixabay.com/photo/2017/08/06/00/17/cafe-659931_1280.jpg" class="active" alt="Coffee Shop Interior 1">
+  <img src="https://cdn.pixabay.com/photo/2022/07/18/14/08/cafe-coffee-shop-7320242_1280.jpg" alt="Coffee Shop Interior 2">
+  <img src="https://cdn.pixabay.com/photo/2019/11/06/15/59/coffee-4606816_1280.jpg" alt="Coffee Table with Coffee">
+  <div class="hero-text">
     <h1>Café Maxi</h1>
-    <p>
-      Ein kleines, ehrliches Wiener Beisl in der Donaustadt.
-      Kaffee, Spritzer, Gespräche – so wie’s sein soll.
-    </p>
+    <p>Ein kleines, ehrliches Wiener Beisl in der Donaustadt. Kaffee, Spritzer, Gespräche – so wie’s sein soll.</p>
     <span>Schüttaustraße 4/10 · 1220 Wien</span>
   </div>
 </section>
 
 <section id="philosophy">
   <h2 class="title">Unsere Philosophie</h2>
-  <div class="philosophy">
-    <div class="card">
-      <p>
-        Café Maxi ist kein Konzept – es ist gewachsen.
-        Ein Ort für Stammgäste, Nachbarn und alle,
-        die ein echtes Wiener Kaffeehaus schätzen.
-      </p>
-    </div>
-    <div class="card">
-      <p>
-        Freundliche Gastgeber, ehrliche Getränke,
-        faire Preise und eine Atmosphäre,
-        die man nicht designen kann – nur leben.
-      </p>
-    </div>
+  <div class="card">
+    <p>Ein Ort für Stammgäste, Nachbarn und alle, die ein echtes Wiener Kaffeehaus schätzen.</p>
   </div>
 </section>
 
 <section id="menu" class="menu-section">
   <h2 class="title">Speise- & Getränkekarte</h2>
-
   <div class="menu-grid">
     <div class="card menu-card">
       <h3>Kaffee & Getränke</h3>
       <div class="menu-item"><span>Espresso</span><span class="price">€ 2,80</span></div>
-      <div class="menu-item"><span>Verlängerter</span><span class="price">€ 3,20</span></div>
       <div class="menu-item"><span>Cappuccino</span><span class="price">€ 3,80</span></div>
-      <div class="menu-item"><span>G’spritzter (weiß/rot)</span><span class="price">€ 2,90</span></div>
-      <div class="menu-item"><span>Wieselburger Bier</span><span class="price">€ 2,40</span></div>
+      <div class="menu-item"><span>Spritzer</span><span class="price">€ 2,90</span></div>
     </div>
-
     <div class="card menu-card">
       <h3>Feines zum Essen</h3>
       <div class="menu-item"><span>Buttercroissant</span><span class="price">€ 3,10</span></div>
-      <div class="menu-item"><span>Hausgemachter Kuchen</span><span class="price">€ 4,80</span></div>
-      <div class="menu-item"><span>Bananenbrot</span><span class="price">€ 4,20</span></div>
-      <div class="menu-item"><span>Frühstück Maxi</span><span class="price">€ 12,50</span></div>
+      <div class="menu-item"><span>Kuchen</span><span class="price">€ 4,80</span></div>
     </div>
   </div>
 </section>
 
 <section id="reviews">
   <h2 class="title">Was unsere Gäste sagen</h2>
-
   <div class="reviews-grid">
     <div class="review">
       <div class="stars">★★★★★</div>
-      <p>
-        Weils einfach a uriges, alt-eingessenes kleines Kaffee is.
-        Super nette Chefleit, lustige Gäst,
-        guater Wein – und die Preise passen.
-      </p>
-      <div class="author">Michael Wimmer · Zopf Michl</div>
-    </div>
-
-    <div class="review">
-      <div class="stars">★★★★★</div>
-      <p>
-        Nettes, gemütliches Wiener Beisl.
-        1× Spritzer, 1× Wieselburger um 5,30 € –
-        sehr nette Kellnerin und a richtig guter Spritzer.
-      </p>
-      <div class="author">Emci Spengla</div>
+      <p>Gemütliches Café mit super Atmosphäre und fairen Preisen.</p>
+      <div class="author">Anna • Wien</div>
     </div>
   </div>
 </section>
 
-<section id="info">
-  <h2 class="title">Besuch & Öffnungszeiten</h2>
-  <div class="info">
-    <div class="card">
-      <p><strong>Montag – Donnerstag</strong><br>08:00 – 22:00</p>
-      <p><strong>Samstag</strong><br>08:00 – 15:00</p>
-      <p><strong>Sonntag</strong><br>geschlossen</p>
-    </div>
-    <div class="card">
-      <p><strong>Adresse</strong><br>
-      Schüttaustraße 4/10<br>
-      1220 Wien</p>
-    </div>
-  </div>
-</section>
-
-<section id="booking" class="menu-section">
+<section id="booking">
   <h2 class="title">Tischreservierung</h2>
   <div class="card">
     <form id="bookingForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="Name" required>
-
-      <label for="address">Adresse:</label>
-      <input type="text" id="address" name="Adresse" required>
-
-      <label for="email">E-Mail:</label>
-      <input type="email" id="email" name="Email" required>
-
-      <label for="phone">Telefonnummer:</label>
-      <input type="tel" id="phone" name="Telefon" required>
-
-      <label for="date">Datum:</label>
-      <input type="date" id="date" name="Datum" required>
-
-      <label for="time">Uhrzeit:</label>
-      <input type="time" id="time" name="Uhrzeit" required>
-      <small>Ein Tisch ist 1,5 Stunden verfügbar</small>
-
-      <label for="guests">Anzahl Gäste (max. 4 pro Tisch):</label>
-      <input type="number" id="guests" name="Gäste" min="1" max="4" required>
-
-      <button type="submit">Tisch reservieren</button>
+      <label>Name:</label><input type="text" id="name" required>
+      <label>Email:</label><input type="email" id="email" required>
+      <label>Datum:</label><input type="date" id="date" required>
+      <button type="submit">Reservieren</button>
     </form>
-    <p style="margin-top:1rem;color:var(--muted);font-size:.9rem;">
-      Hinweis: Es gibt 7 Tische mit jeweils 4 Sitzplätzen.
-    </p>
   </div>
 </section>
 
-<footer>
-  © 2025 Café Maxi · Wien
-</footer>
+<footer>© 2025 Café Maxi · Wien</footer>
 
 <script>
-// Einfaches Reservierungs-Handling (ohne Backend)
-const bookingForm = document.getElementById('bookingForm');
-const MAX_TABLES = 7;
-const SEATS_PER_TABLE = 4;
-
-bookingForm.addEventListener('submit', function(e){
-  e.preventDefault();
-
-  const guests = parseInt(document.getElementById('guests').value);
-  if(guests > SEATS_PER_TABLE){
-    alert('Maximal 4 Gäste pro Tisch erlaubt.');
-    return;
-  }
-
-  // Daten sammeln
-  const name = document.getElementById('name').value;
-  const address = document.getElementById('address').value;
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
-
-  const mailtoLink = `mailto:moritz.matscheko@yahoo.com?subject=Tischreservierung&body=Name:%20${encodeURIComponent(name)}%0AAdresse:%20${encodeURIComponent(address)}%0AEmail:%20${encodeURIComponent(email)}%0ATelefon:%20${encodeURIComponent(phone)}%0ADatum:%20${encodeURIComponent(date)}%0AUhrzeit:%20${encodeURIComponent(time)}%0AGäste:%20${encodeURIComponent(guests)}`;
-
-  window.location.href = mailtoLink;
-  alert('Ihre Reservierungsanfrage wurde geöffnet. Bitte senden Sie die E-Mail ab.');
-});
+const slides = document.querySelectorAll('.hero img');
+let current=0;
+setInterval(() => {
+  slides[current].classList.remove('active');
+  current=(current+1)%slides.length;
+  slides[current].classList.add('active');
+}, 4000);
 </script>
 
 </body>
