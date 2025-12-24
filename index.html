@@ -1,285 +1,199 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Café Maxi – Wien</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Maxi – Wien</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f5f5f7;
+      --card:#ffffff;
+      --text:#1d1d1f;
+      --muted:#6e6e73;
+      --accent:#7a4a2e;
+      --line:#e5e5ea;
+      --star:#ffb703;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{ font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    /* NAV */
+    nav{
+      position:sticky; top:0; backdrop-filter:blur(12px);
+      background:rgba(245,245,247,0.8); border-bottom:1px solid var(--line);
+      padding:1rem 2rem; display:flex; justify-content:space-between; z-index:10;
+    }
+    nav a{ margin-left:1.5rem; text-decoration:none; color:var(--muted); font-weight:500; }
+    nav a:hover{color:var(--text)}
+    .logo{ font-family:"Playfair Display",serif; font-weight:700; }
 
-<style>
-:root{
-  --bg:#f5f5f7;
-  --card:#ffffff;
-  --text:#1d1d1f;
-  --muted:#6e6e73;
-  --accent:#7a4a2e;
-  --line:#e5e5ea;
-  --star:#ffb703;
-}
+    /* HERO */
+    .hero { position:relative; width:100%; height:65vh; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center; background:#000; }
+    .hero img { position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition: opacity 1.5s ease-in-out; }
+    .hero img.active {opacity:1;}
+    .hero .hero-text { position:relative; z-index:2; color:white; text-shadow:0px 0px 12px rgba(0,0,0,0.7); animation: fadeUp 1.2s ease-out forwards; }
+    .hero h1{ font-family:"Playfair Display",serif; font-size:3rem; margin-bottom:0.75rem; }
+    .hero p{ max-width:620px; margin:auto; font-size:1.15rem; margin-bottom:0.5rem; }
+    .hero span{ display:block; color:var(--accent); letter-spacing:2px; font-size:1rem; }
 
-*{box-sizing:border-box;margin:0;padding:0}
+    /* SECTIONS */
+    section{ max-width:1200px; margin:auto; padding:6rem 2rem; }
+    .title{ font-family:"Playfair Display",serif; font-size:2.6rem; margin-bottom:2rem; }
 
-body{
-  font-family:Inter,system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-}
+    /* CARDS */
+    .card{ 
+      background:var(--card); border-radius:24px; padding:3rem; box-shadow:0 20px 50px rgba(0,0,0,.06); 
+      opacity:0; transform: translateY(30px); transition: all 0.8s ease-out;
+    }
+    .card.visible{ opacity:1; transform: translateY(0); }
 
-/* NAV */
-nav{
-  position:sticky;
-  top:0;
-  backdrop-filter:blur(12px);
-  background:rgba(245,245,247,0.8);
-  border-bottom:1px solid var(--line);
-  padding:1rem 2rem;
-  display:flex;
-  justify-content:space-between;
-  z-index:10;
-}
+    /* MENU */
+    .menu-section{ background:linear-gradient(#f5f5f7,#eee); }
+    .menu-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem; }
+    .menu-card h3{ font-family:"Playfair Display",serif; margin-bottom:1.5rem; }
+    .menu-item{ display:flex; justify-content:space-between; padding:.6rem 0; border-bottom:1px dashed var(--line); }
+    .menu-item:last-child{border:none}
+    .menu-item span.price{ display:inline-block; transition: transform 0.3s ease; }
+    .menu-item:hover span.price{ transform: translateX(5px); }
+    .price{font-weight:500}
 
-nav a{
-  margin-left:1.5rem;
-  text-decoration:none;
-  color:var(--muted);
-  font-weight:500;
-}
+    /* REVIEWS */
+    .reviews-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:2.5rem; }
+    .review{ background:var(--card); padding:3rem; border-radius:28px; position:relative; }
+    .review::before{ content:"“"; font-family:"Playfair Display",serif; font-size:6rem; position:absolute; top:-20px; left:20px; color:#ddd; }
+    .stars{ color:var(--star); font-size:1.2rem; margin-bottom:1rem; }
+    .review p{ font-family:"Playfair Display",serif; font-size:1.15rem; }
+    .author{ margin-top:1.5rem; color:var(--muted); font-weight:500; }
 
-nav a:hover{color:var(--text)}
+    /* BOOKING FORM */
+    #bookingForm label{ display:block; margin-top:1rem; margin-bottom:.5rem; font-weight:500; }
+    #bookingForm input{ width:100%; padding:.6rem; border:1px solid var(--line); border-radius:8px; }
+    #bookingForm button{ margin-top:1.5rem; padding:.75rem 1.5rem; background:var(--accent); color:white; border:none; border-radius:8px; transition: all 0.3s ease; cursor:pointer; font-weight:600; }
+    #bookingForm button:hover{ transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
 
-.logo{
-  font-family:"Playfair Display",serif;
-  font-weight:700;
-}
+    /* FOOTER */
+    footer{ background:#111; color:#aaa; text-align:center; padding:3rem; }
 
-/* HERO */
-.hero {
-  position:relative;
-  width:100%;
-  height:65vh;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:#000;
-}
+    /* HERO TEXT ANIMATION */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
 
-.hero img {
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity 1s ease-in-out;
-}
-
-.hero img.active {opacity:1;}
-
-.hero .hero-text {
-  position:relative;
-  z-index:2;
-  color:white;
-  text-shadow:0px 0px 12px rgba(0,0,0,0.7);
-}
-
-.hero h1{
-  font-family:"Playfair Display",serif;
-  font-size:3rem;
-  margin-bottom:0.75rem;
-}
-
-.hero p{
-  max-width:620px;
-  margin:auto;
-  font-size:1.15rem;
-  margin-bottom:0.5rem;
-}
-
-.hero span{
-  display:block;
-  color:var(--accent);
-  letter-spacing:2px;
-  font-size:1rem;
-}
-
-/* SECTIONS */
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:6rem 2rem;
-}
-
-.title{
-  font-family:"Playfair Display",serif;
-  font-size:2.6rem;
-  margin-bottom:2rem;
-}
-
-/* CARDS */
-.card{
-  background:var(--card);
-  border-radius:24px;
-  padding:3rem;
-  box-shadow:0 20px 50px rgba(0,0,0,.06);
-}
-
-/* MENU */
-.menu-section{
-  background:linear-gradient(#f5f5f7,#eee);
-}
-
-.menu-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:2.5rem;
-}
-
-.menu-card h3{
-  font-family:"Playfair Display",serif;
-  margin-bottom:1.5rem;
-}
-
-.menu-item{
-  display:flex;
-  justify-content:space-between;
-  padding:.6rem 0;
-  border-bottom:1px dashed var(--line);
-}
-.menu-item:last-child{border:none}
-.price{font-weight:500}
-
-/* REVIEWS */
-.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
-  gap:2.5rem;
-}
-.review{
-  background:var(--card);
-  padding:3rem;
-  border-radius:28px;
-  position:relative;
-}
-.review::before{
-  content:"“";
-  font-family:"Playfair Display",serif;
-  font-size:6rem;
-  position:absolute;
-  top:-20px;
-  left:20px;
-  color:#ddd;
-}
-.stars{
-  color:var(--star);
-  font-size:1.2rem;
-  margin-bottom:1rem;
-}
-.review p{
-  font-family:"Playfair Display",serif;
-  font-size:1.15rem;
-}
-.author{
-  margin-top:1.5rem;
-  color:var(--muted);
-  font-weight:500;
-}
-
-/* FOOTER */
-footer{
-  background:#111;
-  color:#aaa;
-  text-align:center;
-  padding:3rem;
-}
-</style>
+    /* RESPONSIVE */
+    @media (max-width:768px){
+      .hero h1{ font-size:2.2rem; }
+      .hero p{ font-size:1rem; }
+    }
+  </style>
 </head>
-
 <body>
-
-<nav>
-  <div class="logo">Café Maxi</div>
-  <div>
-    <a href="#philosophy">Philosophie</a>
-    <a href="#menu">Karte</a>
-    <a href="#reviews">Stimmen</a>
-    <a href="#info">Kontakt</a>
-    <a href="#booking">Reservierung</a>
-  </div>
-</nav>
-
-<!-- HERO mit CC0 Bildern -->
-<section class="hero">
-  <img src="https://cdn.pixabay.com/photo/2017/08/06/00/17/cafe-659931_1280.jpg" class="active" alt="Coffee Shop Interior 1">
-  <img src="https://cdn.pixabay.com/photo/2022/07/18/14/08/cafe-coffee-shop-7320242_1280.jpg" alt="Coffee Shop Interior 2">
-  <img src="https://cdn.pixabay.com/photo/2019/11/06/15/59/coffee-4606816_1280.jpg" alt="Coffee Table with Coffee">
-  <div class="hero-text">
-    <h1>Café Maxi</h1>
-    <p>Ein kleines, ehrliches Wiener Beisl in der Donaustadt. Kaffee, Spritzer, Gespräche – so wie’s sein soll.</p>
-    <span>Schüttaustraße 4/10 · 1220 Wien</span>
-  </div>
-</section>
-
-<section id="philosophy">
-  <h2 class="title">Unsere Philosophie</h2>
-  <div class="card">
-    <p>Ein Ort für Stammgäste, Nachbarn und alle, die ein echtes Wiener Kaffeehaus schätzen.</p>
-  </div>
-</section>
-
-<section id="menu" class="menu-section">
-  <h2 class="title">Speise- & Getränkekarte</h2>
-  <div class="menu-grid">
-    <div class="card menu-card">
-      <h3>Kaffee & Getränke</h3>
-      <div class="menu-item"><span>Espresso</span><span class="price">€ 2,80</span></div>
-      <div class="menu-item"><span>Cappuccino</span><span class="price">€ 3,80</span></div>
-      <div class="menu-item"><span>Spritzer</span><span class="price">€ 2,90</span></div>
+  <nav>
+    <div class="logo">Café Maxi</div>
+    <div>
+      <a href="#philosophy">Philosophie</a>
+      <a href="#menu">Karte</a>
+      <a href="#reviews">Stimmen</a>
+      <a href="#info">Kontakt</a>
+      <a href="#booking">Reservierung</a>
     </div>
-    <div class="card menu-card">
-      <h3>Feines zum Essen</h3>
-      <div class="menu-item"><span>Buttercroissant</span><span class="price">€ 3,10</span></div>
-      <div class="menu-item"><span>Kuchen</span><span class="price">€ 4,80</span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="https://cdn.pixabay.com/photo/2017/08/06/00/17/cafe-659931_1280.jpg" class="active" alt="Coffee Shop Interior 1">
+    <img src="https://cdn.pixabay.com/photo/2022/07/18/14/08/cafe-coffee-shop-7320242_1280.jpg" alt="Coffee Shop Interior 2">
+    <img src="https://cdn.pixabay.com/photo/2019/11/06/15/59/coffee-4606816_1280.jpg" alt="Coffee Table with Coffee">
+    <div class="hero-text">
+      <h1>Café Maxi</h1>
+      <p>Ein kleines, ehrliches Wiener Beisl in der Donaustadt. Kaffee, Spritzer, Gespräche – so wie’s sein soll.</p>
+      <span>Schüttaustraße 4/10 · 1220 Wien</span>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="reviews">
-  <h2 class="title">Was unsere Gäste sagen</h2>
-  <div class="reviews-grid">
-    <div class="review">
-      <div class="stars">★★★★★</div>
-      <p>Gemütliches Café mit super Atmosphäre und fairen Preisen.</p>
-      <div class="author">Anna • Wien</div>
+  <section id="philosophy">
+    <h2 class="title">Unsere Philosophie</h2>
+    <div class="card">
+      <p>Ein Ort für Stammgäste, Nachbarn und alle, die ein echtes Wiener Kaffeehaus schätzen.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="booking">
-  <h2 class="title">Tischreservierung</h2>
-  <div class="card">
-    <form id="bookingForm">
-      <label>Name:</label><input type="text" id="name" required>
-      <label>Email:</label><input type="email" id="email" required>
-      <label>Datum:</label><input type="date" id="date" required>
-      <button type="submit">Reservieren</button>
-    </form>
-  </div>
-</section>
+  <section id="menu" class="menu-section">
+    <h2 class="title">Speise- & Getränkekarte</h2>
+    <div class="menu-grid">
+      <div class="card menu-card">
+        <h3>Kaffee & Getränke</h3>
+        <div class="menu-item"><span>Espresso</span><span class="price">€ 2,80</span></div>
+        <div class="menu-item"><span>Cappuccino</span><span class="price">€ 3,80</span></div>
+        <div class="menu-item"><span>Spritzer</span><span class="price">€ 2,90</span></div>
+      </div>
+      <div class="card menu-card">
+        <h3>Feines zum Essen</h3>
+        <div class="menu-item"><span>Buttercroissant</span><span class="price">€ 3,10</span></div>
+        <div class="menu-item"><span>Kuchen</span><span class="price">€ 4,80</span></div>
+      </div>
+    </div>
+  </section>
 
-<footer>© 2025 Café Maxi · Wien</footer>
+  <section id="reviews">
+    <h2 class="title">Was unsere Gäste sagen</h2>
+    <div class="reviews-grid">
+      <div class="review card">
+        <div class="stars">★★★★★</div>
+        <p>Gemütliches Café mit super Atmosphäre und fairen Preisen.</p>
+        <div class="author">Anna • Wien</div>
+      </div>
+    </div>
+  </section>
 
-<script>
-const slides = document.querySelectorAll('.hero img');
-let current=0;
-setInterval(() => {
-  slides[current].classList.remove('active');
-  current=(current+1)%slides.length;
-  slides[current].classList.add('active');
-}, 4000);
-</script>
+  <section id="booking">
+    <h2 class="title">Tischreservierung</h2>
+    <div class="card">
+      <form id="bookingForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <label for="date">Datum:</label>
+        <input type="date" id="date" required>
+        <button type="submit">Reservieren</button>
+      </form>
+    </div>
+  </section>
 
+  <footer>
+    © 2025 Café Maxi · Wien
+  </footer>
+
+  <script>
+    // Hero Slider
+    const slides = document.querySelectorAll('.hero img');
+    let current=0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current=(current+1)%slides.length;
+      slides[current].classList.add('active');
+    }, 4000);
+
+    // Cards Scroll Animation
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+
+    // Optional: Form Submission Alert
+    const form = document.getElementById('bookingForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Vielen Dank für Ihre Reservierung, ' + form.name.value + '!');
+      form.reset();
+    });
+  </script>
 </body>
 </html>
