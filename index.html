@@ -15,6 +15,7 @@
       --line:#e5e5ea;
       --star:#ffb703;
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     body{ font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
 
@@ -36,6 +37,12 @@
     .hero h1{ font-family:"Playfair Display",serif; font-size:3rem; margin-bottom:0.75rem; }
     .hero p{ max-width:620px; margin:auto; font-size:1.15rem; margin-bottom:0.5rem; }
     .hero span{ display:block; color:var(--accent); letter-spacing:2px; font-size:1rem; }
+
+    /* HERO TEXT ANIMATION */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
 
     /* SECTIONS */
     section{ max-width:1200px; margin:auto; padding:6rem 2rem; }
@@ -74,12 +81,6 @@
 
     /* FOOTER */
     footer{ background:#111; color:#aaa; text-align:center; padding:3rem; }
-
-    /* HERO TEXT ANIMATION */
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
 
     /* RESPONSIVE */
     @media (max-width:768px){
@@ -187,7 +188,7 @@
     }, { threshold: 0.1 });
     cards.forEach(card => observer.observe(card));
 
-    // Optional: Form Submission Alert
+    // Form Submission Alert
     const form = document.getElementById('bookingForm');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
